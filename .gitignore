@@ -1,0 +1,10 @@
+venv/ 
+__pycache__/ 
+*.pkl 
+*.bin 
+models/bert_models/ 
+outputs/ 
+nlp_outputs/ 
+*.csv 
+.env 
+venv.zip 
