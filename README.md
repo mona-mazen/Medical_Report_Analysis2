@@ -20,23 +20,71 @@ Given an English **medical abdominal imaging report** (MRI/CT), the NLP model pr
 - `liver` → `present` / `missing` / `removed`  
 - `spleen` → `present` / `missing` / `removed`  
 
-Each report may describe multiple organs, and the model performs **multi-output classification** to produce one prediction per organ.
-
 ---
 
 ## 🔧 Project Structure
 
 ```bash
-Medical_Report_Analysis/
-├─ data/
-│  ├─ raw/
-│  │  └─ nlp_medical_reports_multiorgan.csv   # synthetic medical-style reports (training data)
-│  └─ processed/                              # (optional) cleaned/tokenized data
-├─ models/
-│  └─ nlp_presence_model.joblib               # saved trained NLP model
-├─ src/
-│  ├─ train_nlp_model.py                      # model training & evaluation pipeline
-│  └─ predict_nlp.py                          # inference on new medical reports
-├─ notebooks/
-│  └─ exploration.ipynb                       # optional EDA / experiments / testing
-└─ README.md
+Medical_Report_Analysis2/
+├── Data/
+│   └── reports/
+│       └── sample_report.txt
+├── models/
+│   └── bert_models/          # Download from Google Drive
+│       ├── left_kidney/
+│       ├── right_kidney/
+│       ├── liver/
+│       └── spleen/
+├── src/
+│   ├── config.py
+│   ├── train_bert.py
+│   ├── decision_layer.py
+│   ├── evaluate_bert.py
+│   ├── send_nlp_to_api.py
+│   └── utils/
+├── outputs/
+└── README.md
+```
+
+---
+
+## ⚙️ Setup
+
+### 1. Clone the repo
+```bash
+git clone https://github.com/mona-mazen/Medical_Report_Analysis2.git
+cd Medical_Report_Analysis2
+```
+
+### 2. Install requirements
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Download models
+Download `bert_models` from [Google Drive](https://drive.google.com/drive/folders/14rXu8Ny1sqq3ZRo9TgkDuCujL_AaFwsC?usp=drive_link)
+
+Extract to: `models/bert_models/`
+
+---
+
+## 🚀 Run
+
+```bash
+# Decision layer only
+python src/decision_layer.py
+
+# Send results to API
+python src/send_nlp_to_api.py
+```
+
+---
+
+## 📊 Models
+
+| Organ | Model | Labels |
+|-------|-------|--------|
+| left_kidney | Bio_ClinicalBERT | present / missing / removed |
+| right_kidney | Bio_ClinicalBERT | present / missing / removed |
+| liver | Bio_ClinicalBERT | present / missing / removed |
+| spleen | Bio_ClinicalBERT | present / missing / removed |
