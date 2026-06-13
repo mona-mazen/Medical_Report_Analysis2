@@ -320,5 +320,5 @@ def predict_from_file(file_path):
 
 
 if __name__ == "__main__":
-    FILE_PATH = "Data/reports/sample_report.txt"
+    FILE_PATH = input("Enter file path: ")
     predict_from_file(FILE_PATH)
